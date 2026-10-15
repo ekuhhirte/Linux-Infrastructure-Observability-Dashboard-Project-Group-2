@@ -5,6 +5,7 @@ After=network.target
 [Service]
 User=monitoring_usr
 Group=monitoring_grp
+WorkingDirectory=/var/run/observability
 ExecStart=/usr/local/bin/stress_load_generator.sh
 Restart=always
 RestartSec=15s

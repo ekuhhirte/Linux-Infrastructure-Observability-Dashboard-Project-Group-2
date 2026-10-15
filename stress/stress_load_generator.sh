@@ -33,6 +33,6 @@ while true; do
 
     # 5. Network Traffic Stress (Class 5)
     echo "$(date '+%Y-%m-%d %H:%M:%S') - START: Network Stress" > "$PIPE_PATH"
-    stress-ng --net 1 --timeout 15s --quiet
+    stress-ng --netdev 1 --timeout 15s --quiet
     sleep 10
 done
