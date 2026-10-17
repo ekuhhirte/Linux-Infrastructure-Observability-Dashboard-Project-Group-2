@@ -13,12 +13,8 @@ REAL_WORKERS = {
     "stress-worker-2": ("34.31.209.66", 5000),
     "stress-worker-3": ("34.70.180.38", 5000),
 }
-TEST_WORKERS = {
-    "stress-worker-1": ("127.0.0.1", 5001),
-    "stress-worker-2": ("127.0.0.1", 5002),
-    "stress-worker-3": ("127.0.0.1", 5003),
-}
-WORKERS = TEST_WORKERS
+
+WORKERS = REAL_WORKERS
 
 HISTORY_LEN = 60 # time history
 READ_TIMEOUT = 5
