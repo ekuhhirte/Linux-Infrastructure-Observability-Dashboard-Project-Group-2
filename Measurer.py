@@ -2,6 +2,7 @@ import os
 import time
 import json
 import psutil
+import logging #added for metric tracking ensurance
 from pathlib import Path
 
 PIPELINE_PATH = "/tmp/hardware_stats.fifo"
@@ -50,7 +51,8 @@ def main():
                 raise RuntimeError(f"Path {PIPELINE_PATH} exists but is not a named pipeline")
 
         print(f"Streaming data to {PIPELINE_PATH}. Waiting for a reader")
-
+        
+        logging.info("Measurer started; waiting for a reader") #Logs when the measorer starts & encounters errors
         while True:
                 try: # used to catch overall errors and allow the user to shut down the python script as needed with the keyboard interupt
                         with open(PIPELINE_PATH, "w") as pipeline:
@@ -63,9 +65,11 @@ def main():
 
                                         pipeline.write(json_data)
                                         pipeline.flush()
+                                        logging.info("Heartbeat: metrics collected and written successfully") #added this to show the collection is success
                                         time.sleep(0.25)
 
                 except BrokenPipeError:
+                        logging.warning("Reader disconnected; waiting for a new reader") #logging warner to check for disconnection if FIFO reader does disconnect
                         #reader closed the connection
                         print("Reader closed the connection. Waiting for a new reader")
                         time.sleep(1)
