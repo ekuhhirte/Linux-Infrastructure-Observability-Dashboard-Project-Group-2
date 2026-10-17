@@ -2,7 +2,7 @@ import os
 import time
 import json
 import psutil
-import logging #added for metric tracking ensurance
+import logging #added for metric tracking ensurance 
 from pathlib import Path
 
 PIPELINE_PATH = "/tmp/hardware_stats.fifo"
